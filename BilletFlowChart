@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+<style>
+    #encase{
+        width:45%;
+        margin-left:27.5%;
+        border-style:inset;
+        text-align:center;
+    }
+button{
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+label{
+    font-family:sans-serif;
+    font-weight:bold;
+    font-size:28px;
+}
+p{
+    font-family:sans-serif;
+    font-weight:bold;
+}
+img{
+    width:80%;
+    border-style:groove;
+    border-color:black;
+}
+
+</style>
+
+<script>
+
+  function load(){
+      var x = [document.getElementById("WaitingRoom"), 
+      document.getElementById("InterestInBillet"),
+      document.getElementById("SpecificDay"),
+      document.getElementById("Shadow"),
+      document.getElementById("Shade"),
+      document.getElementById("Spirit"),
+      document.getElementById("Wraith"),
+      document.getElementById("Saturday"),
+      document.getElementById("NoDay"),
+      document.getElementById("Reservist"),
+      document.getElementById("DetachmentQuestion"),
+      document.getElementById("DetachmentChoice"),
+      document.getElementById("Wampa"),
+      document.getElementById("Phantom"),
+      document.getElementById("Poltergeist"),
+      document.getElementById("Revenant"),
+      document.getElementById("Mystic"),
+      document.getElementById("Spectre"),
+      document.getElementById("Foxtrot"),
+      document.getElementById("Banshee"),
+      document.getElementById("LookElsewhere")];
+      for(var i = 0; i < x.length; i++){
+      x[i].style.display = "none";
+      }
+      var y = document.getElementById("encase");
+      y.style.opacity = 0;
+      y.style.display = "block";
+      var opacity = 0; 
+        var intervalID = setInterval(function() { 
+            if (opacity < 1) { 
+                    opacity = opacity + 0.02 
+                    y.style.opacity = opacity; 
+                } else { 
+                    clearInterval(intervalID); 
+                } 
+            }, 2); 
+  }
+  
+  document.addEventListener("DOMContentLoaded", function(event) {
+   document.querySelectorAll('img').forEach(function(img){
+  	img.onerror = function(){this.style.display='none';};
+   })
+});
+
+  window.onload = load;
+  
+  function fireteam(sectiontoOpen) {
+    var x = document.getElementById(sectiontoOpen);
+    if (x.style.display === "none") {
+      x.style.opacity = 0;
+      x.style.display = "block";
+      var opacity = 0; 
+        var intervalID = setInterval(function() { 
+            if (opacity < 1) { 
+                    opacity = opacity + 0.02 
+                    x.style.opacity = opacity; 
+                } else { 
+                    clearInterval(intervalID); 
+                } 
+            }, 2); 
+    } else {
+      x.style.display = "none";
+    }
+    
+  } </script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>212th Billet Finder</title>
+</head>
+<body>
+    <div id="encase">
+
+    <br>
+    <label>Are you interested in obtaining a Billet/Reservist Slot?</label><br>
+    
+    <button onclick="fireteam('InterestInBillet')">Yes</button>
+    <button onclick="fireteam('WaitingRoom')">No</button>
+    <br>
+    <hr>
+    <div id="InterestInBillet">
+        <br>
+            <label>Do you want to become Infantry, or are you looking to join a detachment:</label><br>
+            <button onclick="fireteam('SpecificDay')">Infantry</button>
+            <button onclick="fireteam('DetachmentChoice')">Detachment</button>
+            <br>
+            <hr>
+    </div>
+
+    <div id="WaitingRoom">
+        <br>
+        <p>Join the Operation Waiting Room 1 hour before Main Operations to be pulled into a team.</p>
+
+        <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="SpecificDay">
+        <br>
+        <label>What day for ops works best for you:</label><br>
+        <button onclick="fireteam('Shadow')">Friday</button>
+        <button onclick="fireteam('Saturday')">Saturday</button>
+        <button onclick="fireteam('Spirit')">Sunday</button>
+        <br>
+        <hr>
+    </div>
+
+    <div id="Shadow">
+        <p>Shadow Platoon runs Fridays from 6pm EST to 9pm EST (Sorting begins at 5pm EST)</p>
+        <p>Shadow Platoon consists of 2 Infantry Squads, Shadow 1 & Shadow 2, 1 Spectre Squad, Spectre 3, and always run the detachment Phantom</p>
+
+        <p>To join Shadow 1 or 2, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under said squad, if you enjoy your 
+            stay with the squad, then enquire about getting a Reservist/Billet slot</p>
+
+            <p>Shadow 1 Info Placeholder</p>
+
+            <p>Shadow 2 Info Placeholder</p>
+
+        <p>To join Spectre 3, it is the same process as joining Shadow 1 & 2, however recruits must have the Airborne qualification to run under the squad</p>
+
+        <p>Spectre 3 Info Placeholder</p>
+
+        <p>To join Phantom 2, members are required to have the Gunnery qual at minimum, but are recommended to get Mechanized and Armor when they can.
+            Following that, recruits may contact Phantom leadership for more information on how to join or 
+            <a href="https://sites.google.com/view/memberswiki/detachments/phantom?authuser=0">click the link for more information on Phantom.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+        </div>
+
+    <div id="Saturday">
+        <br>
+        <label>Do you prefer to play in the Morning or Afternoon (EST)</label><br>
+        <button onclick="fireteam('Shade')">Morning</button>
+        <button onclick="fireteam('Wraith')">Afternoon</button>
+        <br>
+        <hr>
+    </div>
+
+    <div id="Shade">
+        <p>Shade Platoon runs Saturdays from 12pm EST to 3pm EST (Sorting begins at 11am EST)</p>
+        <p>Shade Platoon consists of 2 Infantry Squads, Shade 1 & Shade 2, 1 Spectre Squad, Spectre 4, and always run the detachments Revenant & Foxtrot</p>
+        
+        <p>To join Shade 1 or 2, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
+            running with the squad, then enquire about getting a Reservist/Billet slot</p>
+
+            <p>Shade 1 Info Placeholder</p>
+
+            <p>Shade 2 Info Placeholder</p>
+
+        <p>To join Spectre 4, it is the same process as joining Shade 1 & 2, however recruits must have the Airborne qualification to run under the squad</p>
+
+        <p>Spectre 3 Info Placeholder</p>
+
+        <p>To join Revenant, members are required to have the Modular Weapons Team qual at minimum, but are recommended to get Artillery when they can.
+            Following that, recruits may contact Revenant leadership for more information on how to join or 
+            <a href="https://sites.google.com/view/memberswiki/detachments/revenant?authuser=0">click the link for more information on Revenant.</a>.</p>
+
+        <p>To join Foxtrot, members are required to have the Republic Commandos qual, but are recommended to get Demo and Medic to run additional roles.
+            Following that, recruits may contact Foxtrot leadership for more information on how to join or 
+            <a href="https://sites.google.com/view/memberswiki/detachments/foxtrot-group?authuser=0">click the link for more information on Foxtrot.</a>.</p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Wraith">
+        <p>Wraith Platoon runs Saturdays from 5pm EST to 8pm EST (Sorting begins at 4pm EST)</p>
+        <p>Wraith Platoon consists of 3 Infantry Squads, Wraith 1/2/3, and 1 Spectre Squad, Spectre 1</p>
+
+        <p>To join Wraith 1, 2 or 3, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
+            running with the squad, then enquire about getting a Reservist/Billet slot</p>
+
+            <p>Wraith 1 Info Placeholder</p>
+
+            <p>Wraith 2 Info Placeholder</p>
+
+            <p>Wraith 3 Info Placeholder</p>
+
+        <p>To join Spectre 1, it is the same process as joining Wraith 1, 2 & 3, however recruits must have the Airborne qualification to run under the squad</p>
+
+        <p>Spectre 1 Info Placeholder</p>
+
+        <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Spirit">
+        <p>Spirit Platoon runs Sundays from 3pm EST to 6pm EST (Sorting begins at 2pm EST)</p>
+        <p>Spirit Platoon consists of 3 Infantry Squads, Spirit 1/2/3, and 1 Spectre Squad, Spectre 2</p>
+
+        <p>To join Spirit 1, 2 or 3, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
+            running with the squad, then enquire about getting a Reservist/Billet slot</p>
+
+            <p>Spirit 1 Info Placeholder</p>
+
+            <p>Spirit 2 Info Placeholder</p>
+
+            <p>Spirit 3 Info Placeholder</p>
+
+        <p>To join Spectre 2, it is the same process as joining Spirit 1, 2 & 3, however recruits must have the Airborne qualification to run under the squad</p>
+
+        <p>Spectre 2 Info Placeholder</p>
+
+        <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="NoDay">
+        <br>
+        <label>Are you usually free at least one day on most weekends, even if that day changes:</label><br>
+        <button onclick="fireteam('DetachmentQuestion')">Yes</button>
+        <button onclick="fireteam('Reservist')">No</button>
+        <br>
+        <hr>
+    </div>
+
+    <div id="Reservist">
+        <p>If your schedule is very subject to change, then perhaps look into playing when you can, 
+            however if you can make it to a specific platoon's ops every couple of weeks, try gain a reservist slot in that team</p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="DetachmentQuestion">
+        <br>
+        <label>Are you willing to be run in a detachment?:</label><br>
+        <button onclick="fireteam('DetachmentChoice')">Yes</button>
+        <button onclick="fireteam('LookElsewhere')">No</button>
+        <br>
+        <hr>
+    </div>
+
+    <div id="DetachmentChoice">
+        <br>
+        <label>What are you interested in?:</label><br>
+        <button onclick="fireteam('Wampa')">Flying/Aviation</button>
+        <button onclick="fireteam('Phantom')">Mechanized-Vehicles/Tanks</button>
+        <button onclick="fireteam('Poltergeist')">Reconnaissance/Overwatch</button>
+        <button onclick="fireteam('Mystic')">Engineering/Cypher-Solving</button>
+        <button onclick="fireteam('Revenant')">Artillery/Fire-Support</button>
+        <button onclick="fireteam('Spectre')">Flanking/Specialized-Equipment</button>
+        <button onclick="fireteam('Foxtrot')">Republic Commandos</button>
+        <button onclick="fireteam('Banshee')">ARC</button>
+        <br>
+        <hr>
+    </div>
+
+    <div id="Wampa">
+        <img src="https://lh5.googleusercontent.com/qsOFsYRUdutRp5qEqHrb_VrR8YZVCN7Fw8moDN8aRj5qtmJ4rWPuo4-jLYxovZSXClWkjg09KxMOpmlZ-eQkAu8=w16383" alt="Wampa">
+        <p>The Aviation detachment of the 212th Attack Battalion is known by the callsign Wampa. 
+            Wampa’s main priority in operations is to assist infantry in completing their objectives. 
+            Wampa’s tasks consist of reconnaissance, transportation and close air support. 
+            To manage these tasks effectively, Wampa’s pilots are highly trained in their opponent's 
+            capabilities, accurate map reading, controlling their aircraft and Utilizing their ordinance.
+            <br>
+            <br>
+            To join Wampa, you're required to have the Rotary Wing Qual, but can obtain JTAC/TECH/FXW 
+            to run additional roles/vehicles, <a href="https://sites.google.com/view/memberswiki/detachments/wampa?authuser=0">click the link for more information on Wampa.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+        </p>
+    </div>
+
+    <div id="Phantom">
+        <img src="https://lh4.googleusercontent.com/ynPkW9YyA1KQ4W9vjbN_uLYS5yDngCXqmyEYkycvoUVUfJWXWOHeLMCkGuJHowxruxzXU-VKmHPtDkBURsP8E_8=w16383" alt="Phantom">
+        <p>The Mechanized detachment of the 212th Attack Battalion is known by the callsign Phantom. 
+            Phantom is an Armored Transport and Fire Support detachment comprised of two separate branches, 
+            Mechanized and Armored. Phantom supports the infantry in a number of various ways, 
+            including troop transport, enemy asset denial, and overwhelming fire support. 
+            <br>
+            <br>
+            To join Phantom, members require the Gunnery Qual, but can also earn the Mechanized 
+            & Armor qual to get access to more assets, <a href="https://sites.google.com/view/memberswiki/detachments/phantom?authuser=0">click the link for more information on Phantom.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Poltergeist">
+        <img src="https://lh6.googleusercontent.com/zYUnU5wK_zM1yC4iG2gYuQGGhIsDJKwPsCFopPGYE1Zi40j4a2mIIjcMo1yBAobivPLIp3jyMjM693mGbLmDxEs=w16383" alt="Poltergeist">
+        <p>The Reconnaissance detachment of the 212th Attack Battalion is known by the callsign 
+            Poltergeist. Poltergeist specializes in providing recon of enemy locations, fortifications
+            and movements. Poltergeist is able to engage targets from extreme distances when called
+            upon to support the main elements of the Platoon, and has access to the BARC speeders
+            that allow troopers to move around much more effectively.
+            The ARF team can also act in multiple instances as an additional force multiplier to the 
+            Platoon by acting as light skirmishers for flanking, or preventing flanks of the Platoon.
+            <br>
+            <br>
+            To join Poltergeist you must be SCT+ and have the quals Marksman and CLS
+            (Combat Lifesaver), then earn the ARF Qual. The Airborne qual is also recommended later as
+            certain insertions require the use of the Airborne qual's jump pack, <a href="https://sites.google.com/view/memberswiki/detachments/poltergeist?authuser=0">click the link for more information on Poltergeist.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Mystic">
+        <img src="https://lh4.googleusercontent.com/N3NLHatkU9Zrrk3N6xwqZEJW-1T0JUeASn-8Ha3J-p3ceszDJsUbL5DP3TB15ideWYBY76OF9gT5FdtyznE3wZs=w16383" alt="Mystic">
+        <p>The Engineering detachment of the 212th Attack Battalion is known by the callsign Mystic. 
+            Mystic is a combat support detachment made up of two branches: Engineers and Operators.
+            Mystic provides a varying array of support to both Infantry and fellow Detachments. 
+            From creating fortifications, hacking codes, fixing vehicles, and operating specialized 
+            pieces of equipment, Mystic uses their unique skill set and tools to accomplish the mission. 
+            <br>
+            <br>
+            To join Mystic, members must be the rank of SCT+ and earn the Engineering Qual, <a href="https://sites.google.com/view/memberswiki/detachments/mystic?authuser=0">click the link for more information on Mystic.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Revenant">
+        <img src="https://lh5.googleusercontent.com/0fBtI06pEbGfIC4vICSQoXvVVbZv3CGGK3tPJWiwmGfishWjH74NIDd5b8UOH4IRevzmWfAh3sH7tNN5VQSXMc4=w16383" alt="Revenant">
+        <p>The Artillery and Modular Weapons Team of the 212th Attack Battalion is known by the 
+            callsign Revenant. Revenant is a support detachment that focuses on indirect fire support 
+            and heavy modular weapons teams to provide fire support to general infantry. 
+            Fire Support Group currently utilizes the Grenade Machine Gun, the Heavy Blaster, and the 
+            Anti-Air PLX. Artillerymen operate both Mortars and the AV-7.
+            <br>
+            <br>
+            Recruits are required to obtain the MWT qual at minimum, but are recommended to obtain
+            ARTY to utilize Revenant's Mortars, <a href="https://sites.google.com/view/memberswiki/detachments/revenant?authuser=0">click the link for more information on Revenant.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Spectre">
+        <img src="https://lh3.googleusercontent.com/cq-4a5KMNrMdprGEGgOHDZWcqu9946wdChz7ph2NHcURAINYfzjIRZ5-pfOd_ImHf1JGl-KQMb6NnQ1jvUjBbv4=w16383" alt="Spectre">
+        <p>The Airborne detachment of the 212th Attack Battalion is known by the callsign Spectre. 
+            Each platoon has a Spectre squad as part of it's composition. Spectre specializes in fast 
+            attack, highly mobile infantry gameplay. With their jump packs, Spectre is able to drop 
+            behind enemy lines and engage enemies either to the rear or use them to flank positions 
+            with their increased speed. Spectre, using their jump packs, is able to close the gap 
+            between themselves and the enemy, allowing them to excel in CQC combat environments. 
+            They are also able to quickly redeploy to vulnerable flanks.
+            <br>
+            <br>
+            Organizationally, Spectre fall under the infantry structure as "specialized infantry" 
+            and are only considered a detachment in the eyes of the Training Department for the 
+            purpose of organization within that department.
+            <br>
+            <br>
+            To join Spectre, members must first have 1 standard qual to take the Airborne qual, after
+            completing the Airborne qual, members may contact a Team lead or Squad lead in any Platoon
+            as long as a slot is open, <a href="https://sites.google.com/view/memberswiki/detachments/spectre?authuser=0">click the link for more information on Spectre.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+    <div id="Foxtrot">
+        <img src="https://lh4.googleusercontent.com/yH8bLqjBBlFEVsKwPsgAetsInPYFHs4NPeSee8y3J2sSQom5Zg_oiQCl55epURPXcfwu1BslR9eJl1I4605yrac=w16383" alt="Foxtrot">
+        <p>The Republic Commandos of the 212th Attack Battalion are known by the callsign Foxtrot Group. 
+            Foxtrot Group members serve as a multirole asset used to provide an additional layer of 
+            versatility and combat power alongside ground forces.  The Commandos in-game role are to 
+            act as a versatile, adaptable and rapidly deployable shock trooper able to bolster the 
+            infantry forces during engagements or as a jack of all trades when dealing with a variety of 
+            threats faced by ground forces in operations. 
+            <br>
+            <br>
+            To join Foxtrot, members must be SCT+ with 16+ attendances,
+            as well as all standard quals and Demo (Medic recommended for members wishing to get the medic slot)
+            Once the recruit has the quals, they must obtain the Republic Commando qual and possess no
+            Disciplinary actions or Warnings within the past 6 months, <a href="https://sites.google.com/view/memberswiki/detachments/foxtrot-group?authuser=0">click the link for more information on Foxtrot.</a></p>
+    </div>
+
+    <div id="Banshee">
+        <img src="https://lh3.googleusercontent.com/2cdn9euxJXACPi3SMs0uFtnNRMIG99NOW_ze6ot8dvpi4aVr4XkjFMbsZWvqscWEzow0Fp4mDibDb91Oi24CEJc=w16383" alt="Banshee">
+        <p>The Advanced Recon Commandos of the 212th Attack Battalion are known by the callsign Banshee. 
+            Banshee members are primarily attached to the regular infantry element, acting as a force 
+            multiplier, however can be tasked with eliminating enemy installations out of the way of the 
+            main fighting force, or HVT capture and extraction.
+            <br>
+            <br>
+            To join Banshee, members must have all Standard Quals, and are recommended having Medic/ARF/Demo,
+            after that they must be billited in an infantry fireteam without an ARC trooper, and a squad with less than 2 ARCs in it 
+            (Talk with Banshee Leadership or a Newcomer Liason to help find a suitable slot)
+            Following that, recruits must earn a reommendation from their squad leader and another NCO (SNCO if your squad leader is not SNCO)
+            And if approved, members may attend ARC Training, upon completion members will be welcomed to the Banshee detachment, <a href="https://sites.google.com/view/memberswiki/detachments/banshee?authuser=0">click the link for more information on Banshee.</a></p>
+
+            <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+
+
+
+
+    <div id="LookElsewhere">
+        <p>Look at finding a billet in Infantry</p>
+
+        <p>You can find a more detailed list of available billets in the link below</p>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+    </div>
+
+</div>
+
+</body>
+</html>

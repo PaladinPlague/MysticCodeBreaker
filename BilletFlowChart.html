@@ -3,13 +3,22 @@
 <head>
     
 </head>
+<script src="https://apis.google.com/js/api.js"></script>
 <style>
     #encase{
-        width:45%;
-        margin-left:27.5%;
+        width:65%;
+        margin-left:17.5%;
         border-style:inset;
+        border-color:#1c1c1c;
         text-align:center;
+        position:absolute;
     }
+
+    #teamseperate{
+        width:95%;
+        border-top:2px solid #fa6400;
+    }
+
 button{
   align-items: center;
   background-clip: padding-box;
@@ -55,8 +64,89 @@ img{
 
 </style>
 
-<script>
+    <script>
+                function init() {
+                    gapi.client.init({
+                        apiKey: 'AIzaSyCzt6l-WD8b8ee0l_MTqXOsbFt1q15wTkM',
+                        discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+                    }).then(function () {
+                        // Call your function to load data from Google Sheets
+                        loadData();
+                    });
+                }
+        
+                
+                function loadData() {
+            gapi.client.sheets.spreadsheets.values.batchGet({
+                spreadsheetId: '1lupm2SeADsTYg3biuyXmEFwEGtSYH4FUQeX0XH2Hnuk',
+                ranges: ['Roster!F9', 'Roster!F10', 'SquadBrag!A1', 'Roster!C12', 'Roster!C15', 'Roster!C20', 'SquadBrag!A2', 'Roster!E12', 'Roster!E15', 'Roster!E20', 'SquadBrag!A3', 'Roster!G12', 'Roster!G15', 'Roster!G20', 'SquadBrag!A4', 'Roster!I12', 'Roster!I15', 'Roster!I20', 'SquadBrag!A5', 
+                         'Roster!F26', 'Roster!F27', 'SquadBrag!B1', 'Roster!C29', 'Roster!C32', 'Roster!C37', 'SquadBrag!B2', 'Roster!E29', 'Roster!E32', 'Roster!E37', 'SquadBrag!B3', 'Roster!G29', 'Roster!G32', 'Roster!G37', 'SquadBrag!B4', 'Roster!I29', 'Roster!I32', 'Roster!I37', 'SquadBrag!B5', 
+                         'Roster!F43', 'Roster!F44', 'SquadBrag!C1', 'Roster!C46', 'Roster!C49', 'Roster!C54', 'SquadBrag!C2', 'Roster!E46', 'Roster!E49', 'Roster!E54', 'SquadBrag!C3', 'Roster!G46', 'Roster!G49', 'Roster!G54', 'SquadBrag!C4', 'Roster!I46', 'Roster!I48', 'Roster!I51', 'Roster!I55','Roster!I58', 'SquadBrag!C5', 
+                         'Roster!F62', 'Roster!F63', 'SquadBrag!D1', 'Roster!C65', 'Roster!C68', 'Roster!C73', 'SquadBrag!D2', 'Roster!E65', 'Roster!E68', 'Roster!E73', 'SquadBrag!D3', 'Roster!G65', 'Roster!G68', 'Roster!G73', 'SquadBrag!D4', 'Roster!I65', 'SquadBrag!D5', 'Roster!I69', 'SquadBrag!D6', 'Roster!I73', 'SquadBrag!D7',
+                         'Roster!O9', 'Roster!O10', 'Roster!L12', 'Roster!N12', 'Roster!P12', 'Roster!R12', 'SquadBrag!E1',
+                         'Roster!O26', 'Roster!O27', 'SquadBrag!E2', 'Roster!O37', 'Roster!O38', 'SquadBrag!E3', 'Roster!O46', 'Roster!O47', 'SquadBrag!E4', 'Roster!O55', 'Roster!O56', 'Roster!L58', 'Roster!N58', 'Roster!P58', 'Roster!R58', 'SquadBrag!E5', 'Roster!O67', 'Roster!O68', 'SquadBrag!E6', 'Roster!F80', 'Roster!F81', 'SquadBrag!E7'] 
+                         
+                         // Row 1 = Wraith | Row 2 = Spirit | Row 3 = Shadow | Row 4 = Shade | Row 5 = Wampa | Row 6 = Other Detachments
 
+            }).then(function(response) {
+                const values = response.result.valueRanges.map(range => range.values[0]);
+                displayData(values);
+            }, function(response) {
+                console.error('Error loading data from Google Sheets:', response);
+            });
+        }
+
+        function displayData(data) {
+
+            // For Some reason putting it in a loop causes the .init to crash, this is a casual project so I'll bite the bullet and do this part manually
+
+            //Wraith Data
+            document.getElementById('Wraith Platoon').innerText = 'Wraith Lead: ' + data[0] + ' | Wraith 1 Proxy: ' + data[1] //+ ' \n \n Platoon Information: \n ' + data[2];
+            document.getElementById('Wraith 1').innerText = 'Wraith 1 Lead: ' + data[3] + ' \n \n Wraith 1-1 Lead: ' + data[4] + ' | Wraith 1-2 Lead: ' + data[5] //+ ' \n \n Squad Information: \n' +data[6];
+            document.getElementById('Wraith 2').innerText = 'Wraith 2 Lead: ' + data[7] + ' \n \n Wraith 2-1 Lead: ' + data[8] + ' | Wraith 2-2 Lead: ' + data[9] //+ ' \n \n Squad Information: \n' +data[10];
+            document.getElementById('Wraith 3').innerText = 'Wraith 3 Lead: ' + data[11] + ' \n \n Wraith 3-1 Lead: ' + data[12] + ' | Wraith 3-2 Lead: ' + data[13] //+ ' \n \n Squad Information: \n' +data[14];
+            document.getElementById('Spectre 1').innerText = 'Spectre 1 Lead: ' + data[15] + ' \n \n Spectre 1-1 Lead: ' + data[16] + ' | Spectre 1-2 Lead: ' + data[17] //+ ' \n \n Squad Information: \n' +data[18];
+
+            //Spirit Data
+            document.getElementById('Spirit Platoon').innerText = 'Spirit Lead: ' + data[19] + ' | Spirit 1 Proxy: ' + data[20] //+ ' \n \n Platoon Information: \n ' + data[21];
+            document.getElementById('Spirit 1').innerText = 'Spirit 1 Lead: ' + data[22] + ' \n \n Spirit 1-1 Lead: ' + data[23] + ' | Spirit 1-2 Lead: ' + data[24] //+ ' \n \n Squad Information: \n' +data[25];
+            document.getElementById('Spirit 2').innerText = 'Spirit 2 Lead: ' + data[26] + ' \n \n Spirit 2-1 Lead: ' + data[27] + ' | Spirit 2-2 Lead: ' + data[28] //+ ' \n \n Squad Information: \n' +data[29];
+            document.getElementById('Spirit 3').innerText = 'Spirit 3 Lead: ' + data[30] + ' \n \n Spirit 3-1 Lead: ' + data[31] + ' | Spirit 3-2 Lead: ' + data[32] //+ ' \n \n Squad Information: \n' +data[33];
+            document.getElementById('Spectre 2').innerText = 'Spectre 2 Lead: ' + data[34] + ' \n \n Spectre 2-1 Lead: ' + data[35] + ' | Spectre 2-2 Lead: ' + data[36] //+ ' \n \n Squad Information: \n' +data[37];
+
+            //Shadow Data
+            document.getElementById('Shadow Platoon').innerText = 'Shadow Lead: ' + data[38] + ' | Shadow 1 Proxy: ' + data[39] //+ ' \n \n Platoon Information: \n ' + data[40];
+            document.getElementById('Shadow 1').innerText = 'Shadow 1 Lead: ' + data[41] + ' \n \n Shadow 1-1 Lead: ' + data[42] + ' | Shadow 1-2 Lead: ' + data[43] //+ ' \n \n Squad Information: \n' +data[44];
+            document.getElementById('Shadow 2').innerText = 'Shadow 2 Lead: ' + data[45] + ' \n \n Shadow 2-1 Lead: ' + data[46] + ' | Shadow 2-2 Lead: ' + data[47] //+ ' \n \n Squad Information: \n' +data[48];
+            document.getElementById('Spectre 3').innerText = 'Spectre 3 Lead: ' + data[49] + ' \n \n Spectre 3-1 Lead: ' + data[50] + ' | Spectre 3-2 Lead: ' + data[51] //+ ' \n \n Squad Information: \n' +data[52];
+            document.getElementById('Phantom 2').innerText = 'Phantom 2 Lead: ' + data[53] + ' \n \n Phantom 2-1 Lead: ' + data[54] + ' | Phantom 2-2 Lead: ' + data[55] + ' | Phantom 2-3 Lead: ' + data[56] + ' | Phantom 2-4 Lead: ' +data[57] //+ ' \n \n Squad Information: \n' +data[58];
+
+            //Shade Data
+            document.getElementById('Shade Platoon').innerText = 'Shade Lead: ' + data[59] + ' | Shade 1 Proxy: ' + data[60] //+ ' \n \n Platoon Information: \n ' + data[61];
+            document.getElementById('Shade 1').innerText = 'Shade 1 Lead: ' + data[62] + ' \n \n Shade 1-1 Lead: ' + data[63] + ' | Shade 1-2 Lead: ' + data[64] //+ ' \n \n Squad Information: \n' + data[65];
+            document.getElementById('Shade 2').innerText = 'Shade 2 Lead: ' + data[66] + ' \n \n Shade 2-1 Lead: ' + data[67] + ' | Shade 2-2 Lead: ' + data[68] //+ ' \n \n Squad Information: \n' + data[69];
+            document.getElementById('Spectre 4').innerText = 'Spectre 4 Lead: ' + data[70] + ' \n \n Spectre 4-1 Lead: ' + data[71] + ' | Spectre 4-2 Lead: ' + data[72] //+ ' \n \n Squad Information: \n' + data[73];
+            document.getElementById('Revenant 2').innerText = 'Revenant 2 Lead: ' + data[74] //+ ' \n \n Squad Information: \n' + data[75];
+            document.getElementById('Mystic 2').innerText = 'Mystic 2 Lead: ' + data[76] //+ ' \n \n Squad Information: \n' + data[77];
+            document.getElementById('Foxtrot 1').innerText = 'Foxtrot 1 Lead: ' + data[78] //+ ' \n \n Squad Information: \n' + data[79];
+
+            //Detachment Data
+            document.getElementById('WampaText').innerText = 'Wampa Commander: ' + data[80] + ' | Wampa 2IC: ' + data[81] + ' \n \n Flight 1 Leader: ' + data[82] + ' | Flight 2 Leader: ' + data[83] + ' | Flight 3 Leader: ' + data[84] + ' | Flight 4 Leader: ' + data[85] //+ ' \n \n Squadron Information: \n' + data[86];
+            document.getElementById('PhantomText').innerText = 'Phantom Lead: ' + data[87] + ' | Phantom 2IC: ' + data[88] //+ ' \n \n Detachment Information: \n' + data[89];
+            document.getElementById('MysticText').innerText = 'Mystic Lead: ' + data[90] + ' | Mystic 2IC: ' + data[91] //+ ' \n \n Detachment Information: \n' + data[92];
+            document.getElementById('RevenantText').innerText = 'Revenant Lead: ' + data[93] + ' | Revenant 2IC: ' + data[94] //+ ' \n \n Detachment Information: \n' + data[95];
+            document.getElementById('BansheeText').innerText = 'Banshee Lead: ' + data[96] + ' | Banshee 2IC: ' + data[97] //+ ' \n \n Wraith Alpha: ' + data[98] + ' | Spirit Alpha: ' + data[99] + ' | Shadow Alpha: ' + data[100] + ' | Shade Alpha: ' + data[101] //+ ' \n \n Detachment Information: \n' + data[102];
+            document.getElementById('FoxtrotText').innerText = 'Foxtrot Lead: ' + data[103] + ' | Foxtrot 2IC: ' + data[104] //+ ' \n \n Detachment Information: \n' + data[105];
+            document.getElementById('PoltergeistText').innerText = 'Poltergeist Lead: ' + data[106] + ' | Poltergeist 2IC: ' + data[107] //+ ' \n \n Detachment Information: \n' + data[108];
+
+
+        }   
+        
+                gapi.load('client', init);
+            </script>
+            <script src="https://apis.google.com/js/api.js?onload=init"></script>
+    
+<script>
   function load(){
       var x = [document.getElementById("WaitingRoom"), 
       document.getElementById("InterestInBillet"),
@@ -137,14 +227,14 @@ img{
     <button onclick="fireteam('InterestInBillet')">Yes</button>
     <button onclick="fireteam('WaitingRoom')">No</button>
     <br>
-    <hr>
+    <hr id="Divseperate">
     <div id="InterestInBillet">
         <br>
             <label>Do you want to become Infantry, or are you looking to join a detachment:</label><br>
             <button onclick="fireteam('SpecificDay')">Infantry</button>
             <button onclick="fireteam('DetachmentChoice')">Detachment</button>
             <br>
-            <hr>
+            <hr id="Divseperate">
     </div>
 
     <div id="WaitingRoom">
@@ -163,31 +253,40 @@ img{
         <button onclick="fireteam('Saturday')">Saturday</button>
         <button onclick="fireteam('Spirit')">Sunday</button>
         <br>
-        <hr>
+        <hr id="Divseperate">
     </div>
 
     <div id="Shadow">
         <p>Shadow Platoon runs Fridays from 6pm EST to 9pm EST (Sorting begins at 5pm EST)</p>
         <p>Shadow Platoon consists of 2 Infantry Squads, Shadow 1 & Shadow 2, 1 Spectre Squad, Spectre 3, and always run the detachment Phantom</p>
 
+        <p id="Shadow Platoon"></p>
+        <hr id="teamseperate">
+
         <p>To join Shadow 1 or 2, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under said squad, if you enjoy your 
             stay with the squad, then enquire about getting a Reservist/Billet slot</p>
 
-            <p>Shadow 1 Info Placeholder</p>
-
-            <p>Shadow 2 Info Placeholder</p>
+            <p id="Shadow 1"></p>
+            <hr id="teamseperate">
+            <p id="Shadow 2"></p>
+            <hr id="teamseperate">
 
         <p>To join Spectre 3, it is the same process as joining Shadow 1 & 2, however recruits must have the Airborne qualification to run under the squad</p>
 
-        <p>Spectre 3 Info Placeholder</p>
+        <p id="Spectre 3"></p>
+        <hr id="teamseperate">
 
         <p>To join Phantom 2, members are required to have the Gunnery qual at minimum, but are recommended to get Mechanized and Armor when they can.
             Following that, recruits may contact Phantom leadership for more information on how to join or 
             <a href="https://sites.google.com/view/memberswiki/detachments/phantom?authuser=0">click the link for more information on Phantom.</a></p>
 
+            <p id="Phantom 2"></p>
+            <hr id="teamseperate">
+
             <p>You can find a more detailed list of available billets in the link below</p>
             <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
             <button onclick="load()">Reset Search</button>
+            <hr id="Divseperate">
         </div>
 
     <div id="Saturday">
@@ -196,75 +295,104 @@ img{
         <button onclick="fireteam('Shade')">Morning</button>
         <button onclick="fireteam('Wraith')">Afternoon</button>
         <br>
-        <hr>
+        <hr id="Divseperate">
     </div>
 
     <div id="Shade">
         <p>Shade Platoon runs Saturdays from 12pm EST to 3pm EST (Sorting begins at 11am EST)</p>
         <p>Shade Platoon consists of 2 Infantry Squads, Shade 1 & Shade 2, 1 Spectre Squad, Spectre 4, and always run the detachments Revenant & Foxtrot</p>
         
+        <p id="Shade Platoon"></p>
+        <hr id="teamseperate">
+
         <p>To join Shade 1 or 2, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
             running with the squad, then enquire about getting a Reservist/Billet slot</p>
-
-            <p>Shade 1 Info Placeholder</p>
-
-            <p>Shade 2 Info Placeholder</p>
+        
+        <p id="Shade 1"></p>
+        <hr id="teamseperate">
+        <p id="Shade 2"></p>
+        <hr id="teamseperate">
 
         <p>To join Spectre 4, it is the same process as joining Shade 1 & 2, however recruits must have the Airborne qualification to run under the squad</p>
 
-        <p>Spectre 3 Info Placeholder</p>
+        <p id="Spectre 4"></p>
+        <hr id="teamseperate">
 
-        <p>To join Revenant, members are required to have the Modular Weapons Team qual at minimum, but are recommended to get Artillery when they can.
+        <p>To join Revenant 2, members are required to have the Modular Weapons Team qual at minimum, but are recommended to get Artillery when they can.
             Following that, recruits may contact Revenant leadership for more information on how to join or 
             <a href="https://sites.google.com/view/memberswiki/detachments/revenant?authuser=0">click the link for more information on Revenant.</a>.</p>
+
+            <p id="Revenant 2"></p>
+            <hr id="teamseperate">
+
+        <p>To join Mystic 2, members are required to have the Engineering Qual to join.
+            Following that, recruits may contact Mystic leadership for more information on how to join or 
+            <a href="https://sites.google.com/view/memberswiki/detachments/mystic?authuser=0">click the link for more information on Mystic.</a>.</p>
+    
+            <p id="Mystic 2"></p>
+            <hr id="teamseperate">
 
         <p>To join Foxtrot, members are required to have the Republic Commandos qual, but are recommended to get Demo and Medic to run additional roles.
             Following that, recruits may contact Foxtrot leadership for more information on how to join or 
             <a href="https://sites.google.com/view/memberswiki/detachments/foxtrot-group?authuser=0">click the link for more information on Foxtrot.</a>.</p>
 
+            <p id="Foxtrot 1"></p>
+            <hr id="teamseperate">
+
             <p>You can find a more detailed list of available billets in the link below</p>
             <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
             <button onclick="load()">Reset Search</button>
+            <hr id="Divseperate">
     </div>
-
     <div id="Wraith">
         <p>Wraith Platoon runs Saturdays from 5pm EST to 8pm EST (Sorting begins at 4pm EST)</p>
         <p>Wraith Platoon consists of 3 Infantry Squads, Wraith 1/2/3, and 1 Spectre Squad, Spectre 1</p>
 
+        <p id="Wraith Platoon">a</p>
+        <hr id="teamseperate">
+
         <p>To join Wraith 1, 2 or 3, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
             running with the squad, then enquire about getting a Reservist/Billet slot</p>
 
-            <p>Wraith 1 Info Placeholder</p>
-
-            <p>Wraith 2 Info Placeholder</p>
-
-            <p>Wraith 3 Info Placeholder</p>
+        <p id="Wraith 1">a</p>
+        <hr id="teamseperate">
+        <p id="Wraith 2">a</p>
+        <hr id="teamseperate">
+        <p id="Wraith 3">a</p>
+        <hr id="teamseperate">
 
         <p>To join Spectre 1, it is the same process as joining Wraith 1, 2 & 3, however recruits must have the Airborne qualification to run under the squad</p>
 
-        <p>Spectre 1 Info Placeholder</p>
+        <p id="Spectre 1">a</p>
+        <hr id="teamseperate">
 
         <p>You can find a more detailed list of available billets in the link below</p>
             <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
             <button onclick="load()">Reset Search</button>
+            <hr id="Divseperate">
     </div>
 
     <div id="Spirit">
         <p>Spirit Platoon runs Sundays from 3pm EST to 6pm EST (Sorting begins at 2pm EST)</p>
         <p>Spirit Platoon consists of 3 Infantry Squads, Spirit 1/2/3, and 1 Spectre Squad, Spectre 2</p>
 
+        <p id="Spirit Platoon"></p>
+        <hr id="teamseperate">
+
         <p>To join Spirit 1, 2 or 3, contact the Fireteam leaders or Squad Leads of the desired squad to express interest, or attend and run under the squad, if you enjoyed
             running with the squad, then enquire about getting a Reservist/Billet slot</p>
 
-            <p>Spirit 1 Info Placeholder</p>
-
-            <p>Spirit 2 Info Placeholder</p>
-
-            <p>Spirit 3 Info Placeholder</p>
+            <p id="Spirit 1"></p>
+            <hr id="teamseperate">
+            <p id="Spirit 2"></p>
+            <hr id="teamseperate">
+            <p id="Spirit 3"></p>
+            <hr id="teamseperate">
 
         <p>To join Spectre 2, it is the same process as joining Spirit 1, 2 & 3, however recruits must have the Airborne qualification to run under the squad</p>
 
-        <p>Spectre 2 Info Placeholder</p>
+        <p id="Spectre 2"></p>
+        <hr id="teamseperate">
 
         <p>You can find a more detailed list of available billets in the link below</p>
             <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
@@ -277,7 +405,7 @@ img{
         <button onclick="fireteam('DetachmentQuestion')">Yes</button>
         <button onclick="fireteam('Reservist')">No</button>
         <br>
-        <hr>
+        <hr id="Divseperate">
     </div>
 
     <div id="Reservist">
@@ -295,7 +423,7 @@ img{
         <button onclick="fireteam('DetachmentChoice')">Yes</button>
         <button onclick="fireteam('LookElsewhere')">No</button>
         <br>
-        <hr>
+        <hr id="Divseperate">
     </div>
 
     <div id="DetachmentChoice">
@@ -310,7 +438,7 @@ img{
         <button onclick="fireteam('Foxtrot')">Republic Commandos</button>
         <button onclick="fireteam('Banshee')">ARC</button>
         <br>
-        <hr>
+        <hr id="Divseperate">
     </div>
 
     <div id="Wampa">
@@ -319,10 +447,11 @@ img{
             Wampa’s main priority in operations is to assist infantry in completing their objectives. 
             Wampa’s tasks consist of reconnaissance, transportation and close air support. 
             To manage these tasks effectively, Wampa’s pilots are highly trained in their opponent's 
-            capabilities, accurate map reading, controlling their aircraft and Utilizing their ordinance.
+            capabilities, accurate map reading, controlling their aircraft and Utilizing their ordinance.</p>
             <br>
+            <p id="WampaText"></p>
             <br>
-            To join Wampa, you're required to have the Rotary Wing Qual, but can obtain JTAC/TECH/FXW 
+            <p>To join Wampa, you're required to have the Rotary Wing Qual, but can obtain JTAC/TECH/FXW 
             to run additional roles/vehicles, <a href="https://sites.google.com/view/memberswiki/detachments/wampa?authuser=0">click the link for more information on Wampa.</a></p>
 
             <p>You can find a more detailed list of available billets in the link below</p>
@@ -336,10 +465,11 @@ img{
         <p>The Mechanized detachment of the 212th Attack Battalion is known by the callsign Phantom. 
             Phantom is an Armored Transport and Fire Support detachment comprised of two separate branches, 
             Mechanized and Armored. Phantom supports the infantry in a number of various ways, 
-            including troop transport, enemy asset denial, and overwhelming fire support. 
+            including troop transport, enemy asset denial, and overwhelming fire support.</p>
             <br>
+            <p id="PhantomText"></p>
             <br>
-            To join Phantom, members require the Gunnery Qual, but can also earn the Mechanized 
+            <p>To join Phantom, members require the Gunnery Qual, but can also earn the Mechanized 
             & Armor qual to get access to more assets, <a href="https://sites.google.com/view/memberswiki/detachments/phantom?authuser=0">click the link for more information on Phantom.</a></p>
 
             <p>You can find a more detailed list of available billets in the link below</p>
@@ -355,10 +485,11 @@ img{
             upon to support the main elements of the Platoon, and has access to the BARC speeders
             that allow troopers to move around much more effectively.
             The ARF team can also act in multiple instances as an additional force multiplier to the 
-            Platoon by acting as light skirmishers for flanking, or preventing flanks of the Platoon.
+            Platoon by acting as light skirmishers for flanking, or preventing flanks of the Platoon.</p>
             <br>
+            <p id="PoltergeistText"></p>
             <br>
-            To join Poltergeist you must be SCT+ and have the quals Marksman and CLS
+            <p>To join Poltergeist you must be SCT+ and have the quals Marksman and CLS
             (Combat Lifesaver), then earn the ARF Qual. The Airborne qual is also recommended later as
             certain insertions require the use of the Airborne qual's jump pack, <a href="https://sites.google.com/view/memberswiki/detachments/poltergeist?authuser=0">click the link for more information on Poltergeist.</a></p>
 
@@ -373,10 +504,11 @@ img{
             Mystic is a combat support detachment made up of two branches: Engineers and Operators.
             Mystic provides a varying array of support to both Infantry and fellow Detachments. 
             From creating fortifications, hacking codes, fixing vehicles, and operating specialized 
-            pieces of equipment, Mystic uses their unique skill set and tools to accomplish the mission. 
+            pieces of equipment, Mystic uses their unique skill set and tools to accomplish the mission. </p>
             <br>
+            <p id="MysticText"></p>
             <br>
-            To join Mystic, members must be the rank of SCT+ and earn the Engineering Qual, <a href="https://sites.google.com/view/memberswiki/detachments/mystic?authuser=0">click the link for more information on Mystic.</a></p>
+            <p>To join Mystic, members must be the rank of SCT+ and earn the Engineering Qual, <a href="https://sites.google.com/view/memberswiki/detachments/mystic?authuser=0">click the link for more information on Mystic.</a></p>
 
             <p>You can find a more detailed list of available billets in the link below</p>
             <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
@@ -389,10 +521,11 @@ img{
             callsign Revenant. Revenant is a support detachment that focuses on indirect fire support 
             and heavy modular weapons teams to provide fire support to general infantry. 
             Fire Support Group currently utilizes the Grenade Machine Gun, the Heavy Blaster, and the 
-            Anti-Air PLX. Artillerymen operate both Mortars and the AV-7.
+            Anti-Air PLX. Artillerymen operate both Mortars and the AV-7.</p>
             <br>
+            <p id="RevenantText"></p>
             <br>
-            Recruits are required to obtain the MWT qual at minimum, but are recommended to obtain
+            <p>Recruits are required to obtain the MWT qual at minimum, but are recommended to obtain
             ARTY to utilize Revenant's Mortars, <a href="https://sites.google.com/view/memberswiki/detachments/revenant?authuser=0">click the link for more information on Revenant.</a></p>
 
             <p>You can find a more detailed list of available billets in the link below</p>
@@ -408,15 +541,11 @@ img{
             behind enemy lines and engage enemies either to the rear or use them to flank positions 
             with their increased speed. Spectre, using their jump packs, is able to close the gap 
             between themselves and the enemy, allowing them to excel in CQC combat environments. 
-            They are also able to quickly redeploy to vulnerable flanks.
+            They are also able to quickly redeploy to vulnerable flanks.</p>
             <br>
+            <p id="SpectreText"></p>
             <br>
-            Organizationally, Spectre fall under the infantry structure as "specialized infantry" 
-            and are only considered a detachment in the eyes of the Training Department for the 
-            purpose of organization within that department.
-            <br>
-            <br>
-            To join Spectre, members must first have 1 standard qual to take the Airborne qual, after
+            <p>To join Spectre, members must first have 1 standard qual to take the Airborne qual, after
             completing the Airborne qual, members may contact a Team lead or Squad lead in any Platoon
             as long as a slot is open, <a href="https://sites.google.com/view/memberswiki/detachments/spectre?authuser=0">click the link for more information on Spectre.</a></p>
 
@@ -432,24 +561,28 @@ img{
             versatility and combat power alongside ground forces.  The Commandos in-game role are to 
             act as a versatile, adaptable and rapidly deployable shock trooper able to bolster the 
             infantry forces during engagements or as a jack of all trades when dealing with a variety of 
-            threats faced by ground forces in operations. 
+            threats faced by ground forces in operations. </p>
             <br>
+            <p id="FoxtrotText"></p>
             <br>
-            To join Foxtrot, members must be SCT+ with 16+ attendances,
+            <p>To join Foxtrot, members must be SCT+ with 16+ attendances,
             as well as all standard quals and Demo (Medic recommended for members wishing to get the medic slot)
             Once the recruit has the quals, they must obtain the Republic Commando qual and possess no
             Disciplinary actions or Warnings within the past 6 months, <a href="https://sites.google.com/view/memberswiki/detachments/foxtrot-group?authuser=0">click the link for more information on Foxtrot.</a></p>
-    </div>
+            <button onclick="window.location.href = 'https://docs.google.com/spreadsheets/d/1mdb0rxpM5cMznpO5-AzKAgwK1aQcb45eRBqTFS2-XVE/edit#gid=0'">Roster</button>
+            <button onclick="load()">Reset Search</button>
+        </div>
 
     <div id="Banshee">
         <img src="https://lh3.googleusercontent.com/2cdn9euxJXACPi3SMs0uFtnNRMIG99NOW_ze6ot8dvpi4aVr4XkjFMbsZWvqscWEzow0Fp4mDibDb91Oi24CEJc=w16383" alt="Banshee">
         <p>The Advanced Recon Commandos of the 212th Attack Battalion are known by the callsign Banshee. 
             Banshee members are primarily attached to the regular infantry element, acting as a force 
             multiplier, however can be tasked with eliminating enemy installations out of the way of the 
-            main fighting force, or HVT capture and extraction.
+            main fighting force, or HVT capture and extraction.</p>
             <br>
+            <p id="BansheeText"></p>
             <br>
-            To join Banshee, members must have all Standard Quals, and are recommended having Medic/ARF/Demo,
+            <p>To join Banshee, members must have all Standard Quals, and are recommended having Medic/ARF/Demo,
             after that they must be billited in an infantry fireteam without an ARC trooper, and a squad with less than 2 ARCs in it 
             (Talk with Banshee Leadership or a Newcomer Liason to help find a suitable slot)
             Following that, recruits must earn a reommendation from their squad leader and another NCO (SNCO if your squad leader is not SNCO)
